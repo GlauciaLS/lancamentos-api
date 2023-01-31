@@ -6,16 +6,21 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.8</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
-    <groupId>com.example</groupId>
+
+    <groupId>br.com.itau</groupId>
     <artifactId>lancamentos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lancamentos</name>
-    <description>lancamentos</description>
+    <name>lancamentos-api</name>
+    <description>Utilizada para o escape web do Itaú</description>
+
     <properties>
         <java.version>11</java.version>
+        <heroku-maven-plugin.version>2.0.6</heroku-maven-plugin.version>
+        <heroku-maven-plugin.appName>desafio-web-itau</heroku-maven-plugin.appName>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,6 +51,23 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>${heroku-maven-plugin.version}</version>
+                <configuration>
+                    <appName>${heroku-maven-plugin.appName}</appName>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>${project.build.directory}/${project.build.finalName}.jar</include>
+                    </includes>
+                    <jdkVersion>${java.version}</jdkVersion>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
+                    </processTypes>
                 </configuration>
             </plugin>
         </plugins>
