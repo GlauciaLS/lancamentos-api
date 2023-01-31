@@ -11,6 +11,7 @@
 
     <groupId>br.com.itau</groupId>
     <artifactId>lancamentos</artifactId>
+    <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>lancamentos-api</name>
     <description>Utilizada para o escape web do Itaú</description>
