@@ -18,8 +18,6 @@
 
     <properties>
         <java.version>11</java.version>
-        <heroku-maven-plugin.version>2.0.6</heroku-maven-plugin.version>
-        <heroku-maven-plugin.appName>desafio-web-itau</heroku-maven-plugin.appName>
     </properties>
 
     <dependencies>
@@ -52,23 +50,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>${heroku-maven-plugin.version}</version>
-                <configuration>
-                    <appName>${heroku-maven-plugin.appName}</appName>
-                    <includeTarget>false</includeTarget>
-                    <includes>
-                        <include>${project.build.directory}/${project.build.finalName}.jar</include>
-                    </includes>
-                    <jdkVersion>${java.version}</jdkVersion>
-                    <processTypes>
-                        <web>java $JAVA_OPTS -jar ${project.build.directory}/${project.build.finalName}.jar</web>
-                    </processTypes>
                 </configuration>
             </plugin>
         </plugins>
